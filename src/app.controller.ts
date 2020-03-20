@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Moment, Page } from './interfaces/moments';
 
@@ -7,7 +7,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(@Query() query: Page): Moment[] {
+  findMoments(@Query() query: Page): Moment[] {
     return this.appService.getMoments(query);
+  }
+
+  @Get(":id")
+  findMomentById(@Param('id') id: string): Moment {
+    return this.appService.getMomentsById(id);
   }
 }
