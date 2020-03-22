@@ -1,4 +1,9 @@
 export interface Page {
+  page: string;
+  size: string;
+}
+
+export interface TransformedPage {
   page: number;
   size: number;
 }
