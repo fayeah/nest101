@@ -15,6 +15,11 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
+
+  it('spec name', () => {
+    expect(1).toEqual(1)
+  });
+
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')

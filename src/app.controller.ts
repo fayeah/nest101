@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post, Query, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Moment, TransformedPage } from './interfaces/moments';
 import { CreateMomentDTO } from './dto/momentDto';
 import { QueryToNumberPipe } from './pipes/query-to-number.pipe';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller("/moments")
 export class AppController {
@@ -10,6 +11,7 @@ export class AppController {
 
   @Get()
   @UsePipes(new QueryToNumberPipe())
+  @UseGuards(AuthGuard())
   async findMoments(@Query() query: TransformedPage): Promise<Moment[]> {
     return await this.appService.getMoments(query);
   }
