@@ -22,7 +22,6 @@ export class AppController {
   }
 
   @Post()
-  // @UsePipes(new JoiValidationPipe(createCatSchema))
   async create(@Body() createMomentDTO: CreateMomentDTO): Promise<number> {
     return await this.appService.create(createMomentDTO);
   }
